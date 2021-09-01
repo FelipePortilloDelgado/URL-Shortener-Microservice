@@ -89,8 +89,7 @@ app.get('/api/shorturl/:short_url', function(req, res){
   const siteExists = sites.find((site) => String(site.short_url) === String(short_url));
   
   if(siteExists) {
-    console.log(siteExists)
-    res.redirect(`//${siteExists.original_url}`);
+    res.redirect(`//${siteExists.ip}`);
   } else {
     res.json({error: 'No short URL found for the given input'});
   }
