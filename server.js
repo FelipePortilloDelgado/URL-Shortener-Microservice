@@ -30,10 +30,10 @@ app.get('/api/hello', function(req, res) {
 
 
 const middlewareDns = function (req, res, next) {
-  const { url } = req.body;
+  const { URL } = req.body;
   let response;
 
-  const site = url.replace('https://', '').replace('http://','');
+  const site = URL.replace('https://', '').replace('http://','');
 
   dns.lookup(site, (err, addresses) => {
 
@@ -47,18 +47,18 @@ const middlewareDns = function (req, res, next) {
 
         sites.push({
           ip: addresses,
-          original_url: url,
+          original_url: URL,
           short_url: nextNumber          
         });
         
         response = {
-          original_url: url,
+          original_url: URL,
           short_url: nextNumber
         }
 
       } else {
         response = {
-          original_url: url,
+          original_url: URL,
           short_url: siteExists.short_url
         }
       }
